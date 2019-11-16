@@ -42,6 +42,7 @@ export class Installer {
         //const downloadDir = await Installer.getDownloadDir(runnerOS);
         //core.debug(`download directory: ${downloadDir}`);
         const ocArchive = await tc.downloadTool(url);
+        console.log(`${ocArchive}`);
         core.debug(`ocArchive: ${ocArchive}`);
         let ocBinary: string;
         if (runnerOS === 'win32') {
