@@ -1,0 +1,18 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Test action
+      uses: ./oc-exec
+      id: test
+      with:
+        version: 'latest'
+        openshift_server_url: 'https://api.ca-central-1.starter.openshift-online.com:6443'
+        parameters: '{"apitoken":olNfy-m0S__dM42t6_PvqZv8WUWdOIdK_xCjaFV1vXE}'
+        args: 'oc version'
