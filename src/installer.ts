@@ -27,6 +27,7 @@ export class Installer {
         }
 
         core.debug(`downloading: ${url}`);
+        tools.log(`downloading: ${url}`);
         let ocBinary = await Installer.downloadAndExtract(
             url,
             runnerOS
@@ -39,6 +40,8 @@ export class Installer {
     }
 
     static async downloadAndExtract(url: string, runnerOS: string) {
+        const tools = new Toolkit();
+        tools.log('Welcome to this example!');
         if (!url) {
             return null;
         }
@@ -47,6 +50,7 @@ export class Installer {
         const ocArchive = await tc.downloadTool(url);
         console.log(`${ocArchive}`);
         core.debug(`ocArchive: ${ocArchive}`);
+        tools.log(`ocArchive: ${ocArchive}`);
         let ocBinary: string;
         if (runnerOS === 'win32') {
             const downloadDir = await tc.extractZip(ocArchive);
@@ -56,6 +60,7 @@ export class Installer {
             ocBinary = path.join(downloadDir, 'oc');
         }
         core.debug(`ocBinary: ${ocBinary}`);
+        tools.log(`ocBinary: ${ocBinary}`);
         if (!await ioUtil.exists(ocBinary)) {
             return null;
         } else {
