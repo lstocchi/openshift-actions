@@ -47,7 +47,10 @@ export class Installer {
         }
         //const downloadDir = await Installer.getDownloadDir(runnerOS);
         //core.debug(`download directory: ${downloadDir}`);
-        const ocArchive = await tc.downloadTool(url);
+        const ocArchiveFolder = await tc.downloadTool(url);
+        const parts = url.split('/');
+        const archive = parts[parts.length - 1];
+        const ocArchive = path.join(ocArchiveFolder, archive);
         console.log(`${ocArchive}`);
         core.debug(`ocArchive: ${ocArchive}`);
         tools.log(`ocArchive: ${ocArchive}`);
