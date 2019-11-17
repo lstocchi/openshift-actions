@@ -45,8 +45,9 @@ export class Installer {
         if (!url) {
             return null;
         }
-        //const downloadDir = await Installer.getDownloadDir(runnerOS);
-        //core.debug(`download directory: ${downloadDir}`);
+        const downloadDir = await Installer.getDownloadDir(runnerOS);
+        core.debug(`download directory: ${downloadDir}`);
+        tools.log(`download directory: ${downloadDir}`);
         const ocArchiveFolder = await tc.downloadTool(url);
         const parts = url.split('/');
         const archive = parts[parts.length - 1];
@@ -56,10 +57,10 @@ export class Installer {
         tools.log(`ocArchive: ${ocArchive}`);
         let ocBinary: string;
         if (runnerOS === 'win32') {
-            const downloadDir = await tc.extractZip(ocArchive);
+            await tc.extractZip(ocArchive, downloadDir);
             ocBinary = path.join(downloadDir, 'oc.exe');
         } else {
-            const downloadDir = await tc.extractTar(ocArchive);
+            await tc.extractTar(ocArchive, downloadDir);
             ocBinary = path.join(downloadDir, 'oc');
         }
         core.debug(`ocBinary: ${ocBinary}`);
