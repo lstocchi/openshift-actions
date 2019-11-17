@@ -5,10 +5,13 @@ import * as tc from '@actions/tool-cache';
 import * as fs from 'mz/fs';
 import * as path from 'path';
 import * as validUrl from 'valid-url';
+const { Toolkit } = require('actions-toolkit')
 import { LINUX, MACOSX, WIN, OC_TAR_GZ, OC_ZIP, LATEST } from './constants';
 
 export class Installer {
     static async installOc(version: string, runnerOS: string) {
+        const tools = new Toolkit();
+        tools.log('Welcome to this example!');
         if (!version) {
             return null;
         }
