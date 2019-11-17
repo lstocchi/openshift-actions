@@ -27,7 +27,7 @@ export class Installer {
         }
 
         core.debug(`downloading: ${url}`);
-        tools.log(`downloading: ${url}`);
+        tools.log('downloading:' + url);
         let ocBinary = await Installer.downloadAndExtract(
             url,
             runnerOS
