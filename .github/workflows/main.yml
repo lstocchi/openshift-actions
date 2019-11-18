@@ -15,5 +15,5 @@ jobs:
       with:
         version: 'https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.1/linux/oc.tar.gz'
         openshift_server_url: 'https://api.ca-central-1.starter.openshift-online.com:6443'
-        parameters: '{"apitoken":olNfy-m0S__dM42t6_PvqZv8WUWdOIdK_xCjaFV1vXE}'
+        parameters: '{"apitoken":"olNfy-m0S__dM42t6_PvqZv8WUWdOIdK_xCjaFV1vXE"}'
         args: 'oc version'
