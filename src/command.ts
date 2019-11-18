@@ -1,5 +1,8 @@
 import * as exec from '@actions/exec';
 
+const sub = require('substituter');
+const split = require('argv-split');
+
 
 export class Command {
     static async execute(ocPath: string, args: string) {
@@ -13,7 +16,8 @@ export class Command {
     }
 
     static async prepareOcArgs(ocArgs: string) {
-        let args = ocArgs.split(' ');
+        let interpolatedArgs = sub(ocArgs, process.env);
+        let args = split(interpolatedArgs);
         if (args[0] === 'oc' || args[0] === 'oc.exe') {
             args = args.slice(1);
         }
