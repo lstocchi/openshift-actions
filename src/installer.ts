@@ -61,7 +61,7 @@ export class Installer {
     static async getDownloadDir(runnerOS: string) {
         let root = process.env['GITHUB_WORKSPACE'] || '';
         if (!root) {
-            if (runnerOS === 'win32') {
+            if (runnerOS === 'Windows') {
               // On windows use the USERPROFILE env variable
               root = process.env['USERPROFILE'] || 'C:\\';
             } else {
