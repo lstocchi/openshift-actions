@@ -147,7 +147,7 @@ export class Installer {
             url += `${MACOSX}/${OC_TAR_GZ}`;
             break;
           }
-          case 'Windows_NT': {
+          case 'Windows': {
             url += `${WIN}/${OC_ZIP}`;
             break;
           }
