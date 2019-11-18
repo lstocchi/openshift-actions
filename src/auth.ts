@@ -2,6 +2,8 @@ import * as core from '@actions/core';
 import { BASIC_AUTHENTICATION, TOKEN_AUTHENTICATION, NO_AUTHENTICATION } from './constants';
 import { Command } from './command';
 
+const { Toolkit } = require('actions-toolkit');
+
 export interface OpenShiftEndpoint {
     /** URL to the OpenShiftServer */
     serverUrl: string;
@@ -25,6 +27,8 @@ export class OcAuth {
     }
 
     static async createKubeConfig(endpoint: OpenShiftEndpoint, ocPath: string, runnerOS: string) {
+        const tools = new Toolkit();
+        tools.log('createKubeConfig');
         if (!endpoint) {
             core.debug('Null endpoint is not allowed');
             return Promise.reject('Endpoint is not valid');
@@ -48,6 +52,7 @@ export class OcAuth {
                 break;
             case TOKEN_AUTHENTICATION:
                 let args = `login ${skip} --token ${endpoint.parameters['apitoken']} ${endpoint.serverUrl}`;
+                tools.log('args: ' + args);
                 await Command.execute(ocPath, args);
                 break;
             case NO_AUTHENTICATION:

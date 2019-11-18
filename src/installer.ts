@@ -5,7 +5,7 @@ import * as tc from '@actions/tool-cache';
 import * as fs from 'mz/fs';
 import * as path from 'path';
 import * as validUrl from 'valid-url';
-const { Toolkit } = require('actions-toolkit')
+const { Toolkit } = require('actions-toolkit');
 import { LINUX, MACOSX, WIN, OC_TAR_GZ, OC_ZIP, LATEST } from './constants';
 
 export class Installer {
@@ -66,9 +66,12 @@ export class Installer {
         core.debug(`ocBinary: ${ocBinary}`);
         tools.log(`ocBinary: ${ocBinary}`);
         if (!await ioUtil.exists(ocBinary)) {
+            tools.log(`${ocBinary} no exists`);
             return null;
         } else {
+            tools.log(`${ocBinary} exists`);
             fs.chmodSync(ocBinary, '0755');
+            tools.log(`${ocBinary} chmodSync`);
             return ocBinary;
         }
     }
