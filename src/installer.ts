@@ -157,7 +157,7 @@ export class Installer {
     }
 
     static async getOcUtils() {
-        const rawData = await fs.readFile('../oc-utils.json');
+        const rawData = await fs.readFile(path.resolve('../oc-utils.json'));
         return JSON.parse(rawData);
     }
 }
