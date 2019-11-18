@@ -51,7 +51,7 @@ export class OcAuth {
                 );
                 break;
             case TOKEN_AUTHENTICATION:
-                let args = `login ${skip} --token ${endpoint.parameters['apitoken']} ${endpoint.serverUrl}`;
+                let args = `login ${skip} --token=${endpoint.parameters['apitoken']} --server=${endpoint.serverUrl}`;
                 tools.log('args: ' + args);
                 await Command.execute(ocPath, args);
                 break;
