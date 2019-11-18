@@ -7,7 +7,7 @@ const split = require('argv-split');
 export class Command {
     static async execute(ocPath: string, args: string) {
         if (!ocPath) {
-            return Promise.reject('Unable to find oc bundle');
+            return Promise.reject('Unable to find oc bundle.');
         }
 
         const cmdArgs = await Command.prepareOcArgs(args);
