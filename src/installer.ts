@@ -43,7 +43,7 @@ export class Installer {
         const downloadDir = await Installer.getDownloadDir(runnerOS);        
         const pathOcArchive = await tc.downloadTool(url);
         let ocBinary: string;
-        if (runnerOS === 'win32') {
+        if (runnerOS === 'Windows') {
             await tc.extractZip(pathOcArchive, downloadDir);
             ocBinary = path.join(downloadDir, 'oc.exe');
         } else {
