@@ -65,7 +65,7 @@ export class Installer {
               // On windows use the USERPROFILE env variable
               root = process.env['USERPROFILE'] || 'C:\\';
             } else {
-              if (runnerOS === 'darwin') {
+              if (runnerOS === 'macOS') {
                 root = '/Users';
               } else {
                 root = '/home';
@@ -143,7 +143,7 @@ export class Installer {
             url += `${LINUX}/${OC_TAR_GZ}`;
             break;
           }
-          case 'Darwin': {
+          case 'macOS': {
             url += `${MACOSX}/${OC_TAR_GZ}`;
             break;
           }
