@@ -57,10 +57,10 @@ export class Installer {
         tools.log(`ocArchive: ${ocArchive}`);
         let ocBinary: string;
         if (runnerOS === 'win32') {
-            await tc.extractZip(ocArchive, downloadDir);
+            await tc.extractZip(ocArchiveFolder, downloadDir);
             ocBinary = path.join(downloadDir, 'oc.exe');
         } else {
-            await tc.extractTar(ocArchive, downloadDir);
+            await tc.extractTar(ocArchiveFolder, downloadDir);
             ocBinary = path.join(downloadDir, 'oc');
         }
         core.debug(`ocBinary: ${ocBinary}`);
