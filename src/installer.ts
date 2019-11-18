@@ -5,6 +5,7 @@ import * as tc from '@actions/tool-cache';
 import * as fs from 'mz/fs';
 import * as path from 'path';
 import * as validUrl from 'valid-url';
+const { Toolkit } = require('actions-toolkit');
 import { LINUX, MACOSX, WIN, OC_TAR_GZ, OC_ZIP, LATEST } from './constants';
 
 export class Installer {
@@ -132,6 +133,8 @@ export class Installer {
     }
 
     static async getOcBundleByOS(runnerOS: string): Promise<string | null> {
+        const tools = new Toolkit();
+        tools.log('runnerOS' + runnerOS);
         let url: string = '';
     
         // determine the bundle path based on the OS type
