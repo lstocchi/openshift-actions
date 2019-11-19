@@ -2,12 +2,15 @@ import * as core from '@actions/core';
 import { Installer } from './installer';
 import { Command } from './command';
 import { OcAuth, OpenShiftEndpoint } from './auth';
+const { Toolkit } = require('actions-toolkit');
 
 async function run() {
     const openShiftUrl = core.getInput('openshift_server_url');
     const parameters = core.getInput('parameters');
     const version = core.getInput('version');
     const args = core.getInput('cmd');
+    const tools = new Toolkit();
+    tools.log('args' + args);
     const runnerOS = process.env['RUNNER_OS'];
 
     core.debug(version);
