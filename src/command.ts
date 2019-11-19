@@ -10,7 +10,7 @@ export class Command {
         }
 
         const cmdArgs: string[] = await Command.prepareOcArgs(args);
-        return await exec.exec(ocPath, cmdArgs);
+        return await exec.exec(`${ocPath} ${cmdArgs.join(' ')}`);
     }
 
     static async prepareOcArgs(ocArgs: string): Promise<string[]> {
