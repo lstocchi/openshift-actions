@@ -11,9 +11,7 @@ async function run() {
     const args = core.getInput('cmd');
     const tools = new Toolkit();
     const argsA = args.split('\n');
-    for (const a of argsA) {
-        tools.log('args' + a);
-    }    
+    
     const runnerOS = process.env['RUNNER_OS'];
 
     core.debug(version);
@@ -27,7 +25,10 @@ async function run() {
 
     const endpoint: OpenShiftEndpoint = await OcAuth.initOpenShiftEndpoint(openShiftUrl, parameters);
     await OcAuth.createKubeConfig(endpoint, ocPath, runnerOS);
-    await Command.execute(ocPath, args);    
+    for (const a of argsA) {
+        await Command.execute(ocPath, a);  
+    }    
+      
 }
 
 run().catch(core.setFailed);
