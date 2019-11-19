@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test action
+      uses: ./oc-exec
+      id: test
+      with:
+        version: '3.11.153'
+        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+        parameters: '{"apitoken": ${{ secrets.API_TOKEN }}}'
+        cmd: |
+          'get pods'
+          'version' 
