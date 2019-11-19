@@ -5,6 +5,7 @@ import * as tc from '@actions/tool-cache';
 import * as fs from 'mz/fs';
 import * as path from 'path';
 import * as validUrl from 'valid-url';
+const { Toolkit } = require('actions-toolkit');
 import { LINUX, MACOSX, WIN, OC_TAR_GZ, OC_ZIP, LATEST } from './constants';
 
 export class Installer {
@@ -39,14 +40,15 @@ export class Installer {
         if (!url) {
             return null;
         }
-        const downloadDir = await Installer.getDownloadDir(runnerOS);        
+        //const downloadDir = await Installer.getDownloadDir(runnerOS);        
+        let downloadDir = '';
         const pathOcArchive = await tc.downloadTool(url);
         let ocBinary: string;
-        if (runnerOS === 'win32') {
-            await tc.extractZip(pathOcArchive, downloadDir);
+        if (runnerOS === 'Windows') {
+            downloadDir = await tc.extractZip(pathOcArchive);
             ocBinary = path.join(downloadDir, 'oc.exe');
         } else {
-            await tc.extractTar(pathOcArchive, downloadDir);
+            downloadDir = await tc.extractTar(pathOcArchive);
             ocBinary = path.join(downloadDir, 'oc');
         }        
         if (!await ioUtil.exists(ocBinary)) {
@@ -60,11 +62,11 @@ export class Installer {
     static async getDownloadDir(runnerOS: string) {
         let root = process.env['GITHUB_WORKSPACE'] || '';
         if (!root) {
-            if (runnerOS === 'win32') {
+            if (runnerOS === 'Windows') {
               // On windows use the USERPROFILE env variable
               root = process.env['USERPROFILE'] || 'C:\\';
             } else {
-              if (runnerOS === 'darwin') {
+              if (runnerOS === 'macOS') {
                 root = '/Users';
               } else {
                 root = '/home';
@@ -132,6 +134,8 @@ export class Installer {
     }
 
     static async getOcBundleByOS(runnerOS: string): Promise<string | null> {
+        const tools = new Toolkit();
+        tools.log('runnerOS' + runnerOS);
         let url: string = '';
     
         // determine the bundle path based on the OS type
@@ -140,11 +144,11 @@ export class Installer {
             url += `${LINUX}/${OC_TAR_GZ}`;
             break;
           }
-          case 'Darwin': {
+          case 'macOS': {
             url += `${MACOSX}/${OC_TAR_GZ}`;
             break;
           }
-          case 'Windows_NT': {
+          case 'Windows': {
             url += `${WIN}/${OC_ZIP}`;
             break;
           }

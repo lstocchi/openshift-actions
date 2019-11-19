@@ -9,12 +9,11 @@ export class Command {
             return Promise.reject('Unable to find oc bundle');
         }
 
-        const cmdArgs = await Command.prepareOcArgs(args);
-        await exec.exec(ocPath, cmdArgs);
-        return;
+        const cmdArgs: string[] = await Command.prepareOcArgs(args);
+        return await exec.exec(`${ocPath} ${cmdArgs.join(' ')}`);
     }
 
-    static async prepareOcArgs(ocArgs: string) {
+    static async prepareOcArgs(ocArgs: string): Promise<string[]> {
         let interpolatedArgs = sub(ocArgs, process.env);
         let args = split(interpolatedArgs);
         if (args[0] === 'oc' || args[0] === 'oc.exe') {
