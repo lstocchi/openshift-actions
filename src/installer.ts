@@ -40,14 +40,15 @@ export class Installer {
         if (!url) {
             return null;
         }
-        const downloadDir = await Installer.getDownloadDir(runnerOS);        
+        //const downloadDir = await Installer.getDownloadDir(runnerOS);        
+        let downloadDir = '';
         const pathOcArchive = await tc.downloadTool(url);
         let ocBinary: string;
         if (runnerOS === 'Windows') {
-            await tc.extractZip(pathOcArchive, downloadDir);
+            downloadDir = await tc.extractZip(pathOcArchive);
             ocBinary = path.join(downloadDir, 'oc.exe');
         } else {
-            await tc.extractTar(pathOcArchive, downloadDir);
+            downloadDir = await tc.extractTar(pathOcArchive);
             ocBinary = path.join(downloadDir, 'oc');
         }        
         if (!await ioUtil.exists(ocBinary)) {
