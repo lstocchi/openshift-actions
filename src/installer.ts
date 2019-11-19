@@ -126,7 +126,7 @@ export class Installer {
             }
             default: {
                 return null;
-            }
+            } 
         }
         return url;
     }
