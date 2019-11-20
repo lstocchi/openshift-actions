@@ -11,6 +11,7 @@ export class Installer {
         if (!version) {
             return Promise.reject('Invalid version input. Provide a valid version number or url where to download an oc bundle.');
         }
+
         let url = '';
         if (validUrl.isWebUri(version)) {
             url = version;

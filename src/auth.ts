@@ -88,7 +88,7 @@ export class OcAuth {
     static skipTlsVerify(endpoint: OpenShiftEndpoint): string {
         let skipTlsVerify = '';
         if (endpoint.parameters['acceptUntrustedCerts'] === 'true') {
-            skipTlsVerify = '--insecure-skip-tls-verify';
+            skipTlsVerify = '--insecure-skip-tls-verify ';
         }
         return skipTlsVerify;
     }
