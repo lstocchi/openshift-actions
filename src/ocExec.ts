@@ -18,12 +18,7 @@ async function run(): Promise<void> {
         return Promise.reject('Invalid cmd input. Insert at least one command to be executed.');
     }
     const cmds = args.split('\n');
-
     const ocPath = await Installer.installOc(version, runnerOS);
-    if (ocPath === null) {
-        throw new Error('no oc binary found');
-    }
-
     const endpoint: OpenShiftEndpoint = await OcAuth.initOpenShiftEndpoint(openShiftUrl, parameters);
     await OcAuth.createKubeConfig(endpoint, ocPath);
     for (const cmd of cmds) {
