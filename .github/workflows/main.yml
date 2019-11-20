@@ -13,9 +13,9 @@ jobs:
       uses: ./oc-exec
       id: test
       with:
-        version: ''
+        version: 'latest'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}"}'
+        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'get pods'
           'version' 
