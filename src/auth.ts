@@ -15,11 +15,28 @@ export interface OpenShiftEndpoint {
 
 export class OcAuth {
     static async initOpenShiftEndpoint(openShiftServer: string, parameters: string): Promise<OpenShiftEndpoint> {
+        if (!openShiftServer) {
+            return Promise.reject('Invalid Openshift cluster URL.');
+        }
+        if (!parameters) {
+            return Promise.reject('Invalid parameters workflow input.');
+        }
+
+        const paramsJSON: { [key: string]: string } = JSON.parse(parameters);
+        let scheme = '';
+        if (paramsJSON['username'] && paramsJSON['password']){
+            scheme = BASIC_AUTHENTICATION;
+        } else if (paramsJSON['apitoken']) {
+            scheme = TOKEN_AUTHENTICATION;
+        } else {
+            return Promise.reject('There are no sufficient parameters to authenticate to an Openshift cluster.');
+        }
+
         return {
             serverUrl: openShiftServer,
-            parameters: JSON.parse(parameters),
-            scheme: 'Token'
-        } as OpenShiftEndpoint; // for testing
+            parameters: paramsJSON,
+            scheme: scheme
+        } as OpenShiftEndpoint;
     }
 
     static async createKubeConfig(endpoint: OpenShiftEndpoint, ocPath: string): Promise<void> {
@@ -34,18 +51,21 @@ export class OcAuth {
         // parameters:{"username":***,"password":***}, scheme:'UsernamePassword'
         // parameters:{"kubeconfig":***}, scheme:'None'
         const authType = endpoint.scheme;
-        const skip = OcAuth.skipTlsVerify(endpoint);
+        let useCertificateOrSkipTls = OcAuth.getCertificateAuthorityFile(endpoint);
+        if (useCertificateOrSkipTls === '') {
+            useCertificateOrSkipTls = OcAuth.skipTlsVerify(endpoint);
+        }
         switch (authType) {
             case BASIC_AUTHENTICATION:
                 const username = endpoint.parameters['username'];
                 const password = endpoint.parameters['password'];
                 await Command.execute(
                     ocPath,
-                    `login ${skip} -u ${username} -p ${password} ${endpoint.serverUrl}`
+                    `login ${useCertificateOrSkipTls} -u ${username} -p ${password} ${endpoint.serverUrl}`
                 );
                 break;
             case TOKEN_AUTHENTICATION:
-                const args = `login ${skip} --token ${endpoint.parameters['apitoken']} ${endpoint.serverUrl}`;
+                const args = `login ${useCertificateOrSkipTls} --token ${endpoint.parameters['apitoken']} ${endpoint.serverUrl}`;
                 await Command.execute(ocPath, args);
                 break;
             case NO_AUTHENTICATION:
@@ -57,8 +77,19 @@ export class OcAuth {
 
     }
 
+    static getCertificateAuthorityFile(endpoint: OpenShiftEndpoint): string {
+        let certificateFile = '';
+        if (endpoint.parameters['certificateAuthorityFile']) {
+            certificateFile = `--certificate-authority=${endpoint.parameters['certificateAuthorityFile']}`;
+        }
+        return certificateFile;
+    }
+
     static skipTlsVerify(endpoint: OpenShiftEndpoint): string {
-        const skipTlsVerify = '';
+        let skipTlsVerify = '';
+        if (endpoint.parameters['acceptUntrustedCerts'] === 'true') {
+            skipTlsVerify = '--insecure-skip-tls-verify ';
+        }
         return skipTlsVerify;
     }
 }
