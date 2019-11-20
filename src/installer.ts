@@ -9,8 +9,9 @@ import * as validUrl from 'valid-url';
 export class Installer {
     static async installOc(version: string, runnerOS: string): Promise<string> {
         if (!version) {
-            return null;
+            return Promise.reject('Invalid version input. Provide a valid version number or url where to download an oc bundle.');
         }
+
         let url = '';
         if (validUrl.isWebUri(version)) {
             url = version;
@@ -126,12 +127,12 @@ export class Installer {
             }
             default: {
                 return null;
-            } 
+            }
         }
         return url;
     }
 
-    static async getOcUtils(): Promise<any> {
+    static async getOcUtils(): Promise<{ [key: string]: string }> {
         const workspace = process.env['GITHUB_WORKSPACE'] || '';
         const rawData = await fs.readFile(path.join(workspace, 'oc-utils.json'));
         return JSON.parse(rawData);

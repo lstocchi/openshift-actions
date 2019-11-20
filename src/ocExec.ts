@@ -14,13 +14,11 @@ async function run(): Promise<void> {
     core.debug(runnerOS);
     core.debug(process.env['RUNNER_TEMP']);
 
-    const cmds = args.split('\n');
-
-    const ocPath = await Installer.installOc(version, runnerOS);
-    if (ocPath === null) {
-        throw new Error('no oc binary found');
+    if (!args){
+        return Promise.reject('Invalid cmd input. Insert at least one command to be executed.');
     }
-
+    const cmds = args.split('\n');
+    const ocPath = await Installer.installOc(version, runnerOS);
     const endpoint: OpenShiftEndpoint = await OcAuth.initOpenShiftEndpoint(openShiftUrl, parameters);
     await OcAuth.createKubeConfig(endpoint, ocPath);
     for (const cmd of cmds) {
