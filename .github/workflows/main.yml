@@ -13,6 +13,7 @@ jobs:
       uses: ./oc-exec
       id: test
       with:
+        version: ''
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}"}'
         cmd: |
