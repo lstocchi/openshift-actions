@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/installer.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> installer.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/103</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/45</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/94</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cstat-no" title="statement not covered" >var __awaiter = (this &amp;&amp; this.__awaiter) || <span class="fstat-no" title="function not covered" >function (thisArg, _arguments, P, generator) {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    function adopt(value) {</span> <span class="cstat-no" title="statement not covered" >return value instanceof P ? value : new P(<span class="fstat-no" title="function not covered" >function (resolve) {</span> <span class="cstat-no" title="statement not covered" >resolve(value); </span>}); </span>}</span>
+<span class="cstat-no" title="statement not covered" >    return new (P || (P = Promise))(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        function fulfilled(value) {</span> <span class="cstat-no" title="statement not covered" >try { <span class="cstat-no" title="statement not covered" >step(generator.next(value)); </span>} catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} </span>}</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        function rejected(value) {</span> <span class="cstat-no" title="statement not covered" >try { <span class="cstat-no" title="statement not covered" >step(generator["throw"](value)); </span>} catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} </span>}</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        function step(result) {</span> <span class="cstat-no" title="statement not covered" >result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); </span>}</span>
+<span class="cstat-no" title="statement not covered" >        step((generator = generator.apply(thisArg, _arguments || [])).next());</span>
+    });
+};
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", { value: true });</span>
+<span class="cstat-no" title="statement not covered" >const core = require("@actions/core");</span>
+<span class="cstat-no" title="statement not covered" >const ioUtil = require("@actions/io/lib/io-util");</span>
+<span class="cstat-no" title="statement not covered" >const tc = require("@actions/tool-cache");</span>
+<span class="cstat-no" title="statement not covered" >const constants_1 = require("./constants");</span>
+<span class="cstat-no" title="statement not covered" >const fs = require("mz/fs");</span>
+<span class="cstat-no" title="statement not covered" >const path = require("path");</span>
+<span class="cstat-no" title="statement not covered" >const validUrl = require("valid-url");</span>
+class Installer {
+    static installOc<span class="fstat-no" title="function not covered" >(version, runnerOS) {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!version) {</span>
+<span class="cstat-no" title="statement not covered" >                return Promise.reject('Invalid version input. Provide a valid version number or url where to download an oc bundle.');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            let url = '';</span>
+<span class="cstat-no" title="statement not covered" >            if (validUrl.isWebUri(version)) {</span>
+<span class="cstat-no" title="statement not covered" >                url = version;</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                url = yield Installer.getOcBundleUrl(version, runnerOS);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!url) {</span>
+<span class="cstat-no" title="statement not covered" >                return Promise.reject('Unable to determine oc download URL.');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            core.debug(`downloading: ${url}`);</span>
+<span class="cstat-no" title="statement not covered" >            const ocBinary = yield Installer.downloadAndExtract(url, runnerOS);</span>
+<span class="cstat-no" title="statement not covered" >            if (!ocBinary) {</span>
+<span class="cstat-no" title="statement not covered" >                return Promise.reject('Unable to download or extract oc binary.');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return ocBinary;</span>
+        });
+    }
+    static downloadAndExtract<span class="fstat-no" title="function not covered" >(url, runnerOS) {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!url) {</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            let downloadDir = '';</span>
+<span class="cstat-no" title="statement not covered" >            const pathOcArchive = yield tc.downloadTool(url);</span>
+<span class="cstat-no" title="statement not covered" >            let ocBinary;</span>
+<span class="cstat-no" title="statement not covered" >            if (runnerOS === 'Windows') {</span>
+<span class="cstat-no" title="statement not covered" >                downloadDir = yield tc.extractZip(pathOcArchive);</span>
+<span class="cstat-no" title="statement not covered" >                ocBinary = path.join(downloadDir, 'oc.exe');</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                downloadDir = yield tc.extractTar(pathOcArchive);</span>
+<span class="cstat-no" title="statement not covered" >                ocBinary = path.join(downloadDir, 'oc');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!(yield ioUtil.exists(ocBinary))) {</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                fs.chmodSync(ocBinary, '0755');</span>
+<span class="cstat-no" title="statement not covered" >                return ocBinary;</span>
+            }
+        });
+    }
+    static getOcBundleUrl<span class="fstat-no" title="function not covered" >(version, runnerOS) {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            let url = '';</span>
+<span class="cstat-no" title="statement not covered" >            if (version === 'latest') {</span>
+<span class="cstat-no" title="statement not covered" >                url = yield Installer.latest(runnerOS);</span>
+<span class="cstat-no" title="statement not covered" >                return url;</span>
+            }
+            // determine the base_url based on version
+<span class="cstat-no" title="statement not covered" >            const reg = new RegExp('\\d+(?=\\.)');</span>
+<span class="cstat-no" title="statement not covered" >            const vMajorRegEx = reg.exec(version);</span>
+<span class="cstat-no" title="statement not covered" >            if (!vMajorRegEx || vMajorRegEx.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                core.debug('Error retrieving version major');</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            const vMajor = +vMajorRegEx[0];</span>
+<span class="cstat-no" title="statement not covered" >            const ocUtils = yield Installer.getOcUtils();</span>
+<span class="cstat-no" title="statement not covered" >            if (vMajor === 3) {</span>
+<span class="cstat-no" title="statement not covered" >                url = `${ocUtils.openshiftV3BaseUrl}/${version}/`;</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (vMajor === 4) {</span>
+<span class="cstat-no" title="statement not covered" >                url = `${ocUtils.openshiftV4BaseUrl}/${version}/`;</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                core.debug('Invalid version');</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            const bundle = yield Installer.getOcBundleByOS(runnerOS);</span>
+<span class="cstat-no" title="statement not covered" >            if (!bundle) {</span>
+<span class="cstat-no" title="statement not covered" >                core.debug('Unable to find bundle url');</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            url += bundle;</span>
+<span class="cstat-no" title="statement not covered" >            core.debug(`archive URL: ${url}`);</span>
+<span class="cstat-no" title="statement not covered" >            return url;</span>
+        });
+    }
+    static latest<span class="fstat-no" title="function not covered" >(runnerOS) {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            const bundle = yield Installer.getOcBundleByOS(runnerOS);</span>
+<span class="cstat-no" title="statement not covered" >            if (!bundle) {</span>
+<span class="cstat-no" title="statement not covered" >                core.debug('Unable to find bundle url');</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            const ocUtils = yield Installer.getOcUtils();</span>
+<span class="cstat-no" title="statement not covered" >            const url = `${ocUtils.openshiftV4BaseUrl}/${constants_1.LATEST}/${bundle}`;</span>
+<span class="cstat-no" title="statement not covered" >            core.debug(`latest stable oc version: ${url}`);</span>
+<span class="cstat-no" title="statement not covered" >            return url;</span>
+        });
+    }
+    static getOcBundleByOS<span class="fstat-no" title="function not covered" >(runnerOS) {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            let url = '';</span>
+            // determine the bundle path based on the OS type
+<span class="cstat-no" title="statement not covered" >            switch (runnerOS) {</span>
+                case 'Linux': {
+<span class="cstat-no" title="statement not covered" >                    url += `${constants_1.LINUX}/${constants_1.OC_TAR_GZ}`;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                }
+                case 'macOS': {
+<span class="cstat-no" title="statement not covered" >                    url += `${constants_1.MACOSX}/${constants_1.OC_TAR_GZ}`;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                }
+                case 'Windows': {
+<span class="cstat-no" title="statement not covered" >                    url += `${constants_1.WIN}/${constants_1.OC_ZIP}`;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                }
+                default: {
+<span class="cstat-no" title="statement not covered" >                    return null;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            return url;</span>
+        });
+    }
+    static getOcUtils<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >        return __awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function* () {</span></span>
+<span class="cstat-no" title="statement not covered" >            const workspace = process.env['GITHUB_WORKSPACE'] || '';</span>
+<span class="cstat-no" title="statement not covered" >            const rawData = yield fs.readFile(path.join(workspace, 'oc-utils.json'));</span>
+<span class="cstat-no" title="statement not covered" >            return JSON.parse(rawData);</span>
+        });
+    }
+}
+<span class="cstat-no" title="statement not covered" >exports.Installer = Installer;</span>
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 21 2019 11:50:46 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
