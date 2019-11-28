@@ -2,7 +2,6 @@
   "name": "openshift-actions",
   "version": "1.0.0",
   "description": "The OpenShift Extension for GitHub Actions gives you the ability to create workflows to automate the deployment process to OpenShift",
-  "main": "index.js",
   "engines": {
     "vscode": "^1.25.0"
   },
@@ -12,7 +11,8 @@
     "eslint": "node ./node_modules/eslint/bin/eslint.js . --ext .ts",
     "build": "npm run eslint && npm run compile",
     "test": "npm run clean && npm run compile && node ./lib/test/unit-tests.js",
-    "production": "npm clean-install --production"
+    "production": "npm clean-install --production",
+    "watch": "tsc -watch -p ./"
   },
   "repository": {
     "type": "git",
