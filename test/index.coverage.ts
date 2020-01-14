@@ -1,21 +1,23 @@
-/*-----------------------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------------------------
  *  Copyright (c) Red Hat, Inc. All rights reserved.
  *  Licensed under the EPL v2.0 License. See LICENSE file in the project root for license information.
  *-----------------------------------------------------------------------------------------------*/
 
 'use strict';
 
-declare var global: any;
+declare const global: any;
 
 /* tslint:disable no-require-imports */
 
+import * as Mocha from 'mocha';
 import * as fs from 'fs';
 import * as glob from 'glob';
-import * as paths from 'path';
-
 import * as istanbul from 'istanbul';
-import * as Mocha from 'mocha';
+import * as paths from 'path';
 import * as remapIstanbul from 'remap-istanbul';
+
+/* global console, __dirname, require, exports */
+/* eslint no-undef: "error" */
 
 // Linux: prevent a weird NPE when mocha on Linux requires the window size from the TTY
 // Since we are not running in a tty environment, we just implementt he method statically
@@ -108,6 +110,7 @@ class CoverageRunner {
     private matchFn: any = undefined;
     private instrumenter: any = undefined;
 
+    // eslint-disable-next-line no-unused-vars
     constructor(private options: TestRunnerOptions, private testsRoot: string) {
         if (!options.relativeSourcePath) {
             return;
@@ -204,7 +207,7 @@ class CoverageRunner {
         // TODO Allow config of reporting directory with
         const reportingDir = paths.join(self.testsRoot, self.options.relativeCoverageDir);
         const includePid = self.options.includePid;
-        const pidExt = includePid ? ('-' + process.pid) : '';
+        const pidExt = includePid ? (`-${process.pid}`) : '';
         const coverageFile = paths.resolve(reportingDir, `coverage${pidExt}.json`);
 
         // yes, do this again since some test runners could clean the dir initially created

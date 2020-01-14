@@ -1,11 +1,14 @@
-/*-----------------------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------------------------
  *  Copyright (c) Red Hat, Inc. All rights reserved.
  *  Licensed under the MIT License. See LICENSE file in the project root for license information.
  *-----------------------------------------------------------------------------------------------*/
 
-import * as glob from 'glob';
 import * as Mocha from 'mocha';
+import * as glob from 'glob';
 import * as path from 'path';
+
+/* global console, __dirname */
+/* eslint no-undef: "error" */
 
 process.on('unhandledRejection', err => {
     console.log('Unhandled rejection:', err);

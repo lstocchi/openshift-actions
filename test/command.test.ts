@@ -1,11 +1,14 @@
-import { Command } from '../src/command';
 import * as chai from 'chai';
 import * as exec from '@actions/exec';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
+import { Command } from '../src/command';
 
 const expect = chai.expect;
 chai.use(sinonChai);
+
+/* global suite, setup, teardown, test */
+/* eslint no-undef: "error" */
 
 suite('Command', () => {
     let sandbox: sinon.SinonSandbox;
@@ -68,13 +71,7 @@ suite('Command', () => {
             process.env.TESTENV = 'TEST';
             const result = Command.prepareOcArgs('oc ${TESTENV}');
             expect(result).equals('TEST');
-        });
-
-        test('slice function is not called if args doesnt contain oc', () => {
-            const sliceStub = sandbox.stub(Array.prototype, 'slice');
-            sandbox.stub(Array.prototype, 'join');
-            Command.prepareOcArgs('text');
-            expect(sliceStub).not.called;
+            delete process.env.TESTENV;
         });
     });
 });

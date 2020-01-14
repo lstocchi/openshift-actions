@@ -1,14 +1,17 @@
-import * as ioUtil from '@actions/io/lib/io-util';
-import * as tc from '@actions/tool-cache';
 import * as chai from 'chai';
 import * as fs from 'mz/fs';
+import * as ioUtil from '@actions/io/lib/io-util';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
+import * as tc from '@actions/tool-cache';
 import * as validUrl from 'valid-url';
 import { Installer } from '../src/installer';
 
 const expect = chai.expect;
 chai.use(sinonChai);
+
+/* global suite, setup, teardown, test */
+/* eslint no-undef: "error" */
 
 suite('Installer', () => {
     let sandbox: sinon.SinonSandbox;
@@ -120,8 +123,8 @@ suite('Installer', () => {
 
     suite('getOcBundleUrl', () => {
         const ocUtils = {
-            "openshiftV3BaseUrl": "urlv3",
-            "openshiftV4BaseUrl": "urlv4"
+            'openshiftV3BaseUrl': 'urlv3',
+            'openshiftV4BaseUrl': 'urlv4'
         };
 
         test('check if latest url returned if request latest oc version', async () => {
@@ -174,8 +177,8 @@ suite('Installer', () => {
 
         test('check if latest oc version is returned if bundle url is found', async () => {
             const ocUtils = {
-                "openshiftV3BaseUrl": "urlv3",
-                "openshiftV4BaseUrl": "urlv4"
+                'openshiftV3BaseUrl': 'urlv3',
+                'openshiftV4BaseUrl': 'urlv4'
             };
             const ocBundleStub = sandbox.stub(Installer, 'getOcBundleByOS').resolves('ocbundle');
             sandbox.stub(Installer, 'getOcUtils').resolves(ocUtils);
@@ -214,8 +217,8 @@ suite('Installer', () => {
                 "openshiftV4BaseUrl": "urlv4"
             }`;
             const ocUtilsJSON = {
-                openshiftV3BaseUrl: "urlv3",
-                openshiftV4BaseUrl: "urlv4"
+                openshiftV3BaseUrl: 'urlv3',
+                openshiftV4BaseUrl: 'urlv4'
             };
             process.env.GITHUB_WORKSPACE = 'path';
             const readFileStub = sandbox.stub(fs, 'readFile').resolves(ocUtils);
