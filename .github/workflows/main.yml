@@ -14,7 +14,7 @@ jobs:
       id: test
       with:
         version: '3.11.153'
-        openshift_server_url: 'https://api.ca-central-1.starter.openshift-online.com:6443'
+        openshift_server_url: 'https://api.us-west-1.starter.openshift-online.com:6443'
         parameters: '{"apitoken":"A7buguNBTuhUAzqZ2N59_UYOWhyeRgn0kb_rIAju_zU"}'
         cmd: |
           'get pods'
