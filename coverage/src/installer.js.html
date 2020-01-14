@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.15% </span>
+        <span class="strong">94.9% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>98/103</span>
+        <span class='fraction'>93/98</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.56% </span>
+        <span class="strong">95.12% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>43/45</span>
+        <span class='fraction'>39/41</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">89.47% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>94/94</span>
+        <span class='fraction'>89/89</span>
       </div>
     </div>
   </div>
@@ -186,21 +186,14 @@
 141
 142
 143
-144
-145
-146
-147
-148
-149
-150
-151</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+144</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">35×</span>
-<span class="cline-any cline-yes">25×</span>
-<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">32×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">60×</span>
-<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">23×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -210,28 +203,21 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6×</span>
-<span class="cline-any cline-yes">6×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,11 +238,11 @@
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -374,21 +360,14 @@ class Installer {
             else {
                 url = yield Installer.getOcBundleUrl(version, runnerOS);
             }
-            if (!url) {
-                return Promise.reject('Unable to determine oc download URL.');
-            }
             core.debug(`downloading: ${url}`);
-            const ocBinary = yield Installer.downloadAndExtract(url, runnerOS);
-            if (!ocBinary) {
-                return Promise.reject('Unable to download or extract oc binary.');
-            }
-            return ocBinary;
+            return yield Installer.downloadAndExtract(url, runnerOS);
         });
     }
     static downloadAndExtract(url, runnerOS) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!url) {
-                return null;
+                return Promise.reject('Unable to determine oc download URL.');
             }
             let downloadDir = '';
             const pathOcArchive = yield tc.downloadTool(url);
@@ -402,7 +381,7 @@ class Installer {
                 ocBinary = path.join(downloadDir, 'oc');
             }
             if (!(yield ioUtil.exists(ocBinary))) {
-                return null;
+                return Promise.reject('Unable to download or extract oc binary.');
             }
             else {
                 fs.chmodSync(ocBinary, '0755');
@@ -499,7 +478,7 @@ exports.Installer = Installer;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 28 2019 10:47:34 GMT+0100 (Central European Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 14 2020 11:23:50 GMT+0100 (Central European Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

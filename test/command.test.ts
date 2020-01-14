@@ -45,7 +45,7 @@ suite('Command', () => {
         });
 
         test('check if exec method is called with right command', async () => {
-            sandbox.stub(Command, 'prepareOcArgs').resolves('cmdArgs');
+            sandbox.stub(Command, 'prepareOcArgs').returns('cmdArgs');
             const execStub = sandbox.stub(exec, 'exec').resolves(0);
             const result = await Command.execute('path', 'args');
             expect(execStub).calledOnceWith('path cmdArgs');
@@ -54,25 +54,26 @@ suite('Command', () => {
     });
 
     suite('prepareOcArgs', () => {
-        test('oc is cut off from final result string', async () => {
-            const res = await Command.prepareOcArgs('oc version');
+        test('oc is cut off from final result string', () => {
+            const res = Command.prepareOcArgs('oc version');
             expect(res).equals('version');
         });
 
-        test('oc.exe is cut off from final result string', async () => {
-            const res = await Command.prepareOcArgs('oc.exe version');
+        test('oc.exe is cut off from final result string', () => {
+            const res = Command.prepareOcArgs('oc.exe version');
             expect(res).equals('version');
         });
 
-        test('check if substituer substitute value', async () => {
+        test('check if substituer substitute value', () => {
             process.env.TESTENV = 'TEST';
-            const result = await Command.prepareOcArgs('oc ${TESTENV}');
+            const result = Command.prepareOcArgs('oc ${TESTENV}');
             expect(result).equals('TEST');
         });
 
-        test('slice function is not called if args doesnt contain oc', async () => {
+        test('slice function is not called if args doesnt contain oc', () => {
             const sliceStub = sandbox.stub(Array.prototype, 'slice');
-            await Command.prepareOcArgs('version');
+            sandbox.stub(Array.prototype, 'join');
+            Command.prepareOcArgs('text');
             expect(sliceStub).not.called;
         });
     });
