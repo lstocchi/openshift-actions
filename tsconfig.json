@@ -2,10 +2,10 @@
     "compilerOptions": {
         "target": "ES6",
         "module": "commonjs",
-        "outDir": "./lib",
-        "rootDir": "./src",
+        "outDir": "lib",
+        "rootDir": ".",
     },
     "exclude": [
         "node_modules"
     ]
-  }
+}
