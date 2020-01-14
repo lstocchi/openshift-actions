@@ -2,6 +2,9 @@ import * as path from 'path';
 
 import { runTests } from 'vscode-test';
 
+/* global console, __dirname */
+/* eslint no-undef: "error" */
+
 async function main() {
     try {
         // The folder containing the Extension Manifest package.json

@@ -1,12 +1,16 @@
-import { OcAuth, OpenShiftEndpoint } from '../src/auth';
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
 import { BASIC_AUTHENTICATION, TOKEN_AUTHENTICATION } from '../src/constants';
+// eslint-disable-next-line no-unused-vars
+import { OcAuth, OpenShiftEndpoint } from '../src/auth';
 import { Command } from '../src/command';
 
 const expect = chai.expect;
 chai.use(sinonChai);
+
+/* global suite, setup, teardown, test */
+/* eslint no-undef: "error" */
 
 suite('OcAuth', () => {
     let sandbox: sinon.SinonSandbox;
@@ -118,7 +122,7 @@ suite('OcAuth', () => {
             sandbox.stub(OcAuth, 'skipTlsVerify').returns('');
             const commandStub = sandbox.stub(Command, 'execute').resolves(0);
             await OcAuth.loginOpenshift(endpoint, 'path');
-            expect(commandStub).calledOnceWith('path', 'login  -u username -p password url');            
+            expect(commandStub).calledOnceWith('path', 'login  -u username -p password url');
         });
 
         test('check if correct oc command is executed with token authentication type', async () => {
@@ -130,7 +134,7 @@ suite('OcAuth', () => {
             sandbox.stub(OcAuth, 'skipTlsVerify').returns('');
             const commandStub = sandbox.stub(Command, 'execute').resolves(0);
             await OcAuth.loginOpenshift(endpoint, 'path');
-            expect(commandStub).calledOnceWith('path', 'login  --token token url');  
+            expect(commandStub).calledOnceWith('path', 'login  --token token url');
         });
 
         test('check if new error is thrown if no vail authentication type is found', async () => {
