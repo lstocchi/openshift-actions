@@ -123,8 +123,7 @@ export class Installer {
     }
 
     static async getOcUtils(): Promise<{ [key: string]: string }> {
-        const workspace = process.env['GITHUB_WORKSPACE'] || '';
-        const rawData = await fs.readFile(path.join(workspace, 'oc-utils.json'));
+        const rawData = await fs.readFile(path.resolve('..', 'oc-utils.json'));
         return JSON.parse(rawData);
     }
 }
