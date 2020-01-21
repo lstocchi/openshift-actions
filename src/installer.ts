@@ -124,7 +124,7 @@ export class Installer {
 
     static async getOcUtils(): Promise<{ [key: string]: string }> {
         // eslint-disable-next-line no-undef
-        const rawData = await fs.readFile(path.resolve(__dirname, '..', 'oc-utils.json'));
+        const rawData = await fs.readFile(path.join(__dirname, '/../../oc-utils.json'));
         return JSON.parse(rawData);
     }
 }
