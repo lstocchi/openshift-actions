@@ -13,7 +13,16 @@ export async function run(): Promise<void> {
   const parameters = core.getInput('parameters');
   const version = core.getInput('version');
   const args = core.getInput('cmd');
+  const proxy = core.getInput('proxy');
   const runnerOS = process.env.RUNNER_OS;
+
+  if (!proxy) {
+    core.debug(proxy);
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    process.env.https_proxy = proxy;
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    process.env.http_proxy = proxy;
+  }
 
   core.debug(version);
   core.debug(runnerOS);
